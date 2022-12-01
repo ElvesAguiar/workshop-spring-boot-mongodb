@@ -1,17 +1,17 @@
-package com.elvesaguiar.workshopmongo.resources.excetion;
+package com.elvesaguiar.workshopmongo.resources.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.elvesaguiar.workshopmongo.resources.exception.StandardError;
 import com.elvesaguiar.workshopmongo.services.exception.ObjectNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
+	@ExceptionHandler(value = ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFoundException(ObjectNotFoundException e, HttpServletRequest request ){
 		
 		
