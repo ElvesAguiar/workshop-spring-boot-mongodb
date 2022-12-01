@@ -34,6 +34,21 @@ public class UserService {
 			throw new ObjectNotFoundException("Objecto não encontrado");
 			}
 	}
+	
+	public User insert(User obj) {
+		return  repository.insert(obj);
+	}
+
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repository.save(newObj);
+		}
+
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+	}
 
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
